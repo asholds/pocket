@@ -1,17 +1,14 @@
 var Pocket = function(){
 	this.CONSUMER_KEY = "45183-065f155055460bdb3b563eef";
+	this.ACCESS_TOKEN = "92e7eaaf-c665-63ce-c268-c84090";
 
 };
 
 Pocket.prototype.authenticate = function(){
-	console.log("auth");
+	//console.log(this.CONSUMER_KEY);
 
 
 	
-
-$.post('https://getpocket.com/v3/oauth/request',{'consumer_key': this.CONSUMER_KEY, 'redirect_uri': 'http://asholds.github.io/pocket'},function(data){
-		$('#content').html("result: "+data);
-	},"json");
 
 	
 
