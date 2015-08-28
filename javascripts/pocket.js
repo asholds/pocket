@@ -6,7 +6,19 @@ var Pocket = function(){
 
 Pocket.prototype.authenticate = function(){
 	//console.log(this.CONSUMER_KEY);
-
+	$.ajax({
+		url: "https://www.getpocket.com/v3/oauth/request",
+		type: "POST",
+		dataType: 'jsonp',
+		data: {
+        		consumer_key: this.CONSUMER_KEY,
+        		redirect_uri: "http://asholds.github.io/pocket"
+    		},	
+    		success: function( response ) {
+        		console.log( response ); // server response
+    		}
+	});
+  
 
 	
 
