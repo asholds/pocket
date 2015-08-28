@@ -16,6 +16,11 @@ Pocket.prototype.authenticate = function(){
     		},	
     		success: function( response ) {
         		console.log( response ); // server response
+    		},
+    		error: function(jqXHR, textStatus, errorThrown) {
+    			console.log(jqXHR);
+    			console.log(textStatus);
+    			console.log(errorThrown);
     		}
 	});
   
