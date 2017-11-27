@@ -9,6 +9,8 @@
   </head>
   <body>
     <div>
+      <span id='refresh'>Refresh</span>
+      <br/><br/>
       <span id="open">Open Selected Link(s)</span>
       <div id='links'></div>
     </div>
@@ -18,6 +20,10 @@
 <script>
 
 $(function(){
+
+  $('#refresh').click(function(e){
+    pocket.getUnread();
+  })
 
   $('#open').click(function(e){
     pocket.openSelected();
