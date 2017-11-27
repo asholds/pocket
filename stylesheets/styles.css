@@ -1,0 +1,27 @@
+
+
+#open{
+	width: 95%;
+	display: inline-block;
+	text-align: center;
+	border: 1px solid black;
+	padding:5px;
+	cursor: pointer;
+}
+
+
+
+section.unread_link{
+	cursor:pointer;	
+	height:50px;
+	width:85%;
+	border:1px solid black;
+	padding:5px;
+	margin-top:25px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+section.unread_link.selected{
+	background:grey;
+}

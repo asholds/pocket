@@ -1,32 +1,45 @@
 var Pocket = function(){
-	this.CONSUMER_KEY = "45183-065f155055460bdb3b563eef";
-	this.ACCESS_TOKEN = "92e7eaaf-c665-63ce-c268-c84090";
+	var unreadList = [];
+	var feedUrl = "https://getpocket.com/users/asholds/feed/unread";
+	var jsonUrl = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fgetpocket.com%2Fusers%2Fasholds%2Ffeed%2Funread"
 
+	var getUnread = function(){
+		$.get(jsonUrl, function(data) {
+		    if(data.status == "ok"){
+		    	$.each(data.items,function(i,v){
+		    		var item = {
+		    			"title": v.title,
+		    			"link": v.link.split('?')[0]
+		    		}
+		    		unreadList.push(item);
+		    	})
+		    }else{	unreadList.push({"title":"ERROR"}); }
+		    writeLinks();
+		});
+	};
+
+	var writeLinks = function(){
+		$.each(unreadList, function(i,v){
+			$('#links').append("<section class='unread_link' linkUrl='" + v.link + "'><span>"+ v.title + "</span></section>")
+		});
+	}
+
+	var openSelected = function(){
+		var selected = $('.selected');
+		$.each(selected,function(i,v){
+			//console.log($(v));
+			window.open($(v).attr('linkurl'));
+		})
+		//$.each(unreadList, function(i,v){
+			//window.open(v.link)
+		//});
+	}
+
+	return {
+        getUnread: getUnread,
+        openSelected: openSelected
+    };
 };
 
-Pocket.prototype.authenticate = function(){
-	//console.log(this.CONSUMER_KEY);
-	$.ajax({
-		url: "https://www.getpocket.com/v3/oauth/request",
-		type: "POST",
-		dataType: 'jsonp',
-		data: {
-        		consumer_key: this.CONSUMER_KEY,
-        		redirect_uri: "http://asholds.github.io/pocket"
-    		},	
-    		success: function( response ) {
-        		console.log( response ); // server response
-    		},
-    		error: function(jqXHR, textStatus, errorThrown) {
-    			console.log(jqXHR);
-    			console.log(textStatus);
-    			console.log(errorThrown);
-    		}
-	});
-  
 
-	
 
-	
-
-};
